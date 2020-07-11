@@ -5,6 +5,7 @@ import pandas as pd
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
+from sqlalchemy import extract
 from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify
@@ -74,3 +75,6 @@ def stats(start=None, end=None):
     filter(Measurement.date <= end).all()
     temps = list(np.ravel(results))
     return jsonify(temps=temps)
+
+if __name__ == "__main__":
+    app.run(debug=True)
